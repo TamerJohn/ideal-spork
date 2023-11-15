@@ -1,0 +1,37 @@
+<section id="todos">
+  <header>
+    <h2><%= @list[:name] %></h2>
+    <ul>
+      <li><a class="edit" href="/lists/<%= @list_id %>/edit">Edit List</a></li>
+    </ul>
+  </header>
+  <ul>
+    <% @todos.each_with_index do |todo, index|%>
+    <li>
+      <h3><%= todo[:name] %></h3>
+      <form action="/lists/<%= @list_id %>/todos/<%= index %>/delete" method="post" class="delete">
+        <label hidden for="delete">Delete Todo <%= todo[:name] %></label>
+        <button type="submit" name="delete" id="delete">Delete Todo</button>
+      </form>
+    </li>
+    <% end %>
+  </ul>
+</section>
+
+<form action="/lists/<%= @list_id %>/todos" method="post">
+  <dl>
+    <dt>
+      <label for="todo_name">Enter a new todo item:</label>
+    </dt>
+      <dd>
+        <input type="text" name="todo_name" id="todo_name" placeholder="A new todo item" value="<%= @todo_name %>">
+      </dd>
+  </dl>
+  <fieldset class="actions">
+    <input type="submit" value="Add">
+  </fieldset>
+</form>
+
+<% content_for :header_links do %>
+  <a href="/lists">All Lists</a>
+<% end %>
