@@ -1,13 +1,13 @@
 <ul id="lists">
-  <% @lists.each_with_index do |list, index|%>
-  <li>
+  <% sort_lists(@lists) do |list, index|%>
+  <li class="<%= list_class(list) %>">
     <a href="/lists/<%= index %>">
-      <h2><%= list[:name] %></h2><p><%= list[:todos].size %></p>
+      <h2><%= list[:name] %></h2><p><%= list_completion_rate(list) %></p>
     </a>
   </li>
   <% end %>
 </ul>
 
 <% content_for :header_links do %>
-  <a href="/lists/new">New List</a>
+  <a class ="add" href="/lists/new">New List</a>
 <% end %>
