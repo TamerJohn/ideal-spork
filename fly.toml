@@ -1,9 +1,9 @@
-# fly.toml app configuration file generated for todos-it-was-the-fonts-fault on 2023-11-16T05:24:43Z
+# fly.toml app configuration file generated for todoslasttry on 2023-11-16T05:27:17Z
 #
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 #
 
-app = "todos-it-was-the-fonts-fault"
+app = "todoslasttry"
 primary_region = "iad"
 
 [build]
