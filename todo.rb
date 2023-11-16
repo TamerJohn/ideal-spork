@@ -1,12 +1,12 @@
 require "sinatra"
-require "sinatra/reloader" if development?
 require "sinatra/content_for"
 require "tilt/erubis"
-require 'securerandom'
+require "securerandom"
 
 configure do
   enable :sessions
   set :session_secret, SecureRandom.hex(32)
+  set :erb, :escape_html => true
 end
 
 before do
@@ -15,6 +15,10 @@ before do
 end
 
 helpers do
+  def h(content)
+    Rack::Utils.escape_html(content)
+  end
+
   def list_complete?(list)
     todos_count(list) > 0 && remaining_todos_count(list) == 0
   end
@@ -92,7 +96,10 @@ end
 #view a single list
 get "/lists/:list_id" do
   @list_id = params[:list_id].to_i
-  redirect "/lists" unless (0..@lists.size).cover?(@list_id)
+  unless (0..@lists.size).cover?(@list_id)
+    session[:error] = "List Not Found"
+    redirect "/lists"
+  end
 
   @list = @lists[@list_id]
   @todos = @list[:todos]

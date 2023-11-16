@@ -12,7 +12,7 @@
   </header>
   <ul>
     <% sort_todos(@todos) do |todo, index|%>
-    <li class="<%= "complete" if todo[:done] %>">
+    <li class="<%== "complete" if todo[:done] %>">
 
       <form action="/lists/<%= @list_id %>/todos/<%= index %>/update" method="post" class="check">
         <input type="hidden" name="completed" value="<%= !todo[:done] %>">
