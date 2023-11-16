@@ -1,7 +1,8 @@
 require "sinatra"
-#require "sinatra/reloader" if development?
+require "sinatra/reloader" if development?
 require "sinatra/content_for"
 require "tilt/erubis"
+require 'securerandom'
 
 configure do
   enable :sessions
