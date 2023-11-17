@@ -3,15 +3,15 @@
     <h2>Editing "<%= @list[:name] %>"</h2>
     <ul>
       <li>
-        <form action="/lists/<%== @list_id %>/delete" method="post">
+        <form action="/lists/<%= @list[:id] %>/delete" method="post" class="delete">
           <label hidden for="delete">Delete List</label>
-          <button type="submit" name="delete" id="delete" class="delete">Delete List</button>
+          <button type="submit" class="delete" id="delete" name="delete">Delete List</button>
         </form>
       </li>
     </ul>
   </header>
 </section>
-<form action="/lists/<%= @list_id %>" method="post">
+<form action="/lists/<%= @list[:id] %>" method="post">
   <dl>
     <dt>
       <label for="list_name">Edit the name for the list:</label>
@@ -22,6 +22,6 @@
   </dl>
   <fieldset class="actions">
     <input type="submit" value="Save">
-    <a href="/lists/<%= @list_id %>">Cancel</a>
+    <a href="/lists/<%= @list[:id] %>">Cancel</a>
   </fieldset>
 </form>
